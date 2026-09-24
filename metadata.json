@@ -2,5 +2,7 @@
   "name": "Medway - Rural & Underserved Healthcare Access Platform",
   "description": "A modern, accessible public healthcare access platform for rural and underserved communities, featuring facility discovery, preventive guidance, appointments, and access analytics.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }
