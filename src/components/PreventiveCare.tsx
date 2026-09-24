@@ -35,11 +35,17 @@ export const PreventiveCare: React.FC<PreventiveCareProps> = ({
   const [selectedAge, setSelectedAge] = useState<string>('birth');
   const [isPlayingAudioId, setIsPlayingAudioId] = useState<string | null>(null);
   const [activeAccordion, setActiveAccordion] = useState<string | null>('prev-1');
+  const [audioNotice, setAudioNotice] = useState<string | null>(null);
 
   // Web Speech Synthesis Audio
   const speakText = (id: string, text: string) => {
     if (!('speechSynthesis' in window)) {
-      alert(language === 'hi' ? 'आपके ब्राउज़र में ऑडियो सपोर्ट उपलब्ध नहीं है।' : 'Audio reading is not supported on this browser.');
+      setAudioNotice(
+        language === 'hi' 
+          ? 'आपके ब्राउज़र में ऑडियो वाचन सपोर्ट उपलब्ध नहीं है।' 
+          : 'Audio speech reading is not supported on this browser.'
+      );
+      setTimeout(() => setAudioNotice(null), 4000);
       return;
     }
 
@@ -105,6 +111,18 @@ export const PreventiveCare: React.FC<PreventiveCareProps> = ({
   return (
     <div className="space-y-6">
       
+      {audioNotice && (
+        <div className="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-2.5 rounded-xl text-xs flex items-center justify-between shadow-xs animate-in fade-in">
+          <span>{audioNotice}</span>
+          <button 
+            onClick={() => setAudioNotice(null)} 
+            className="text-amber-700 hover:text-amber-950 font-bold ml-3"
+          >
+            ✕
+          </button>
+        </div>
+      )}
+
       {/* Top Banner & Header */}
       <div className="bg-white rounded-xl border border-stone-200 p-5 sm:p-7 shadow-xs">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
